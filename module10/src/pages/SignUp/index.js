@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Image } from 'react-native';
 
 import Background from '~/components/Background';
@@ -15,6 +15,11 @@ import {
 } from './styles';
 
 export default function SignUp({ navigation }) {
+  const emailReference = useRef();
+  const passwordReference = useRef();
+
+  function handleSubmit() {}
+
   return (
     <Background>
       <Container>
@@ -25,6 +30,10 @@ export default function SignUp({ navigation }) {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Nome completo"
+            returnKeyboardType="next"
+            onSubmitEditing={() => {
+              emailReference.current.focus();
+            }}
           />
           <FormInput
             icon="mail-outline"
@@ -32,11 +41,21 @@ export default function SignUp({ navigation }) {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Digite seu e-mail"
+            ref={emailReference}
+            returnKeyboardType="next"
+            onSubmitEditing={() => {
+              passwordReference.current.focus();
+            }}
           />
           <FormInput
             icon="lock-outline"
             secureTextEntry
             placeholder="Sua senha secreta"
+            ref={passwordReference}
+            returnKeyboardType="send"
+            onSubmitEditing={() => {
+              handleSubmit;
+            }}
           />
           <SubmitButton onPress={() => {}}>Criar conta</SubmitButton>
         </Form>
