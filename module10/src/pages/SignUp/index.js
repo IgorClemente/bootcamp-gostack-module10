@@ -30,7 +30,7 @@ export default function SignUp({ navigation }) {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Nome completo"
-            returnKeyboardType="next"
+            returnKeyType="next"
             onSubmitEditing={() => {
               emailReference.current.focus();
             }}
@@ -42,7 +42,7 @@ export default function SignUp({ navigation }) {
             autoCapitalize="none"
             placeholder="Digite seu e-mail"
             ref={emailReference}
-            returnKeyboardType="next"
+            returnKeyType="next"
             onSubmitEditing={() => {
               passwordReference.current.focus();
             }}
@@ -52,7 +52,7 @@ export default function SignUp({ navigation }) {
             secureTextEntry
             placeholder="Sua senha secreta"
             ref={passwordReference}
-            returnKeyboardType="send"
+            returnKeyType="send"
             onSubmitEditing={() => {
               handleSubmit;
             }}
