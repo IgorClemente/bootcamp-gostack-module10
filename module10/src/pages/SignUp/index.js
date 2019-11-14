@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Image } from 'react-native';
 
 import Background from '~/components/Background';
@@ -14,11 +16,23 @@ import {
   SignInLinkText,
 } from './styles';
 
+import { signUpRequest } from '~/store/modules/auth/actions';
+
 export default function SignUp({ navigation }) {
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const emailReference = useRef();
   const passwordReference = useRef();
 
-  function handleSubmit() {}
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleSubmit() {
+    dispatch(signUpRequest(name, email, password));
+  }
 
   return (
     <Background>
@@ -34,7 +48,10 @@ export default function SignUp({ navigation }) {
             onSubmitEditing={() => {
               emailReference.current.focus();
             }}
+            value={name}
+            onChangeText={setName}
           />
+
           <FormInput
             icon="mail-outline"
             keyboardType="email-address"
@@ -46,7 +63,10 @@ export default function SignUp({ navigation }) {
             onSubmitEditing={() => {
               passwordReference.current.focus();
             }}
+            value={email}
+            onChangeText={setEmail}
           />
+
           <FormInput
             icon="lock-outline"
             secureTextEntry
@@ -54,10 +74,20 @@ export default function SignUp({ navigation }) {
             ref={passwordReference}
             returnKeyType="send"
             onSubmitEditing={() => {
-              handleSubmit;
+              handleSubmit();
             }}
+            value={password}
+            onChangeText={setPassword}
           />
-          <SubmitButton onPress={() => {}}>Criar conta</SubmitButton>
+
+          <SubmitButton
+            loading={loading}
+            onPress={() => {
+              handleSubmit();
+            }}
+          >
+            Criar conta
+          </SubmitButton>
         </Form>
 
         <SignInLink onPress={() => navigation.navigate('SignIn')}>
