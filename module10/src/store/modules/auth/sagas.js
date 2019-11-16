@@ -13,7 +13,7 @@ export function* signIn({ payload }) {
       email,
       password,
     });
-    console.tron.warn(response);
+
     const { token, user } = response.data;
 
     if (user.provider) {
