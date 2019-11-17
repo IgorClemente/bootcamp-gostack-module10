@@ -1,12 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import Background from '~/components/Background';
 
 // import { Container } from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function Profile() {
-  return <View />;
+  return <Background />;
 }
 
 Profile.navigationOptions = {
