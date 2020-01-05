@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import Background from '~/components/Background';
-
 import { Container, ProvidersList, Provider, Avatar, Name } from './styles';
+
+import Background from '~/components/Background';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -30,7 +30,9 @@ export default function SelectProvider({ navigation }) {
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <Provider
-              onPress={() => navigation.navigate('SelectDateTime', { item })}
+              onPress={() =>
+                navigation.navigate('SelectDateTime', { provider: item })
+              }
             >
               <Avatar
                 source={{

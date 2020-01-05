@@ -22,7 +22,7 @@ export default function DateInput({ date, onChange }) {
 
     if (action === DatePickerAndroid.dateSetAction) {
       const selectedDate = new Date(year, month, day);
-      console.tron.warn(selectedDate);
+
       onChange(selectedDate);
     }
   }
